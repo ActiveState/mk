@@ -243,8 +243,8 @@ def mk(argv=sys.argv, doc=None):
        and not exists(opts.config_file_path_override):
         raise MkError("config file does not exist: `%s'"
                         % opts.config_file_path_override)
-    if not opts.makefile_path:
-        makefile_path = find_makefile_path(allow_search=not opts.nosearch)
+    makefile_path = opts.makefile_path \
+        or find_makefile_path(allow_search=not opts.nosearch)
     master = TaskMaster(opts, makefile_path,
                         opts.config_file_path_override, force=opts.force)
 
