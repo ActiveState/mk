@@ -251,7 +251,7 @@ def mk(argv=sys.argv, doc=None):
         template = open(template_path, 'r').read()
         project_name = basename(os.getcwd()) or None
         if project_name:
-            template.replace("PROJECT_NAME", project_name)
+            template = template.replace("PROJECT_NAME", project_name)
         fout = open(makefile_path, 'w')
         try:
             fout.write(template)
