@@ -36,7 +36,7 @@ directories.
 # '--verbose').
 
 import os
-from os.path import exists, dirname, abspath, join
+from os.path import exists, dirname, abspath, join, basename
 import sys
 import re
 from pprint import pprint
@@ -211,6 +211,8 @@ def mk(argv=sys.argv, doc=None):
     parser.add_option("-d", "--debug", dest="log_level",
         action="store_const", const=logging.DEBUG,
         help="verbose debugging output")
+    parser.add_option("--start", action="store_true",
+        help="create a new starter 'Makefile.py' in the current directory")
 
     # Other options (we're somewhat following make's and rake's leads).
     parser.add_option("-f", "--makefile", dest="makefile_path",
@@ -235,9 +237,28 @@ def mk(argv=sys.argv, doc=None):
 
     parser.set_defaults(log_level=logging.INFO,
                         config_file_path_override=None,
-                        force=False, no_lookup=False)
+                        force=False, no_lookup=False,
+                        start=False)
     opts, tasks = parser.parse_args(argv[1:])
     log.setLevel(opts.log_level)
+
+    if opts.start:
+        makefile_path = "Makefile.py"
+        if exists(makefile_path):
+            raise MkError("cannot create starter Makefile: `%s' exists"
+                          % makefile_path)
+        template_path = join(dirname(__file__), "Makefile.py.template")
+        template = open(template_path, 'r').read()
+        project_name = basename(os.getcwd()) or None
+        if project_name:
+            template.replace("PROJECT_NAME", project_name)
+        fout = open(makefile_path, 'w')
+        try:
+            fout.write(template)
+        finally:
+            fout.close()
+        log.info("`%s' starter created (Try `mk hello`.)", makefile_path)
+        return
 
     if opts.config_file_path_override is not None \
        and not exists(opts.config_file_path_override):
