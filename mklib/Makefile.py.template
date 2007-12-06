@@ -29,6 +29,6 @@ class todo(Task):
             self._dump_todos_from_path(path)
 
     def _dump_todos_from_path(self, path):
-        os.system('grep -nH "TO\DO|X\XX" "%s"' % path)
+        os.system('grep -nH "TO''DO\\|X''XX" "%s"' % path)
 
 
