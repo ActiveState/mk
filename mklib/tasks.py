@@ -266,9 +266,9 @@ class File(object):
         self.dir = makefile and makefile.dir or None
         self.cfg = cfg
     def __repr__(self):
-        return "<File '%s'>" % relpath(self.path)
+        return "<File '%s'>" % self.path
     def __str__(self):
-        return "file `%s'" % relpath(self.path)
+        return "file `%s'" % self.nicepath
     def id(self):
         # Use for tracking by the TaskMaster
         return ("file", self.path)
@@ -276,6 +276,19 @@ class File(object):
     @property
     def relpath(self):
         return relpath(self.path)
+
+    @property
+    def nicepath(self):
+        r = self.relpath
+        a = self.path
+        if not sys.platform == "win32":
+            home = os.environ["HOME"]
+            if a.startswith(home):
+                a = "~" + a[len(home):]
+        if len(r) < len(a):
+            return r
+        else:
+            return a
 
     @property
     def deps(self):
