@@ -1,3 +1,4 @@
+- svn prop issues causing test failures. Get all props from old repo.
 - failure to have a config.py should be lazy. Only try to load it, and
   error out, when first access to self.cfg\.  This allows tasks that
   don't need the config to run or to adapt if there is no config (e.g. "mk
@@ -132,10 +133,5 @@ Design notes
 Side thoughts
 =============
 
-- allow '_' as a dummy task name to not have a nickname?
-    class _(Task):
-        results = ["answer.txt"]
-        def make(self):
-            ...
-    $ mk -T
-    mk answer.txt
+- use FSEvents on Leopard to speed up determination of what's changed
+
