@@ -101,7 +101,7 @@ class TaskMaster(object):
 
     def default_makefile_doc(self):
         return "`%s' has no default target.\n\n${common_task_list}\n" \
-               % self.makefile.path
+               % self.makefile.nicepath
 
     def _do_default(self):
         doc = self.makefile.doc or self.default_makefile_doc()

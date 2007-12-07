@@ -86,6 +86,19 @@ class Makefile(object):
                   or "")
         return "<Makefile `%s'%s>" % (self.path, ns_str)
 
+    @property
+    def nicepath(self):
+        a = self.path
+        r = relpath(self.path)
+        if not sys.platform == "win32" and isabs(a):
+            home = os.environ["HOME"]
+            if a.startswith(home):
+                a = "~" + a[len(home):]
+        if len(r) < len(a):
+            return r
+        else:
+            return a
+
     def define_configuration(self, cls, name, bases, dct):
         if self.cfg is not None:
             raise IllegalMakefileError(
