@@ -391,6 +391,26 @@ class FileListAccessor(object):
         self._cache = None
 
     def __get__(self, obj, objtype):
+        # This `return None` early out is an attempt to avoid this
+        # problem when defining a task from another task where the base
+        # task-class defines a "def results()" generator. I don't
+        # *really* understand what is going on here.
+        #
+        #-----
+        # Traceback
+        #   ...
+        #   File "support/metricstasks.py", line 299, in <module>
+        #     class aslogs_downloads(_FooTask):
+        #   File "/home/trentm/as/mk/mklib/tasks.py", line 62, in __init__
+        #     getattr(cls, "results", None))
+        #   File "/home/trentm/as/mk/mklib/tasks.py", line 406, in __get__
+        #     items = self._defn(obj) #  is either a generator or result list
+        # TypeError: Error when calling the metaclass bases
+        #     unbound method results() must be called with _FooTask instance as first argument (got NoneType instance instead)
+        #-----
+        if obj is None:
+            return None
+
         if isinstance(self._defn, basestring):
             raise IllegalMakefileError(
                 # '%ss': cheating, I know __str__() endswith an apostrophe
