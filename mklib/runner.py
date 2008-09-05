@@ -130,10 +130,10 @@ def setup_logging(stream=None):
     """Do logging setup:
 
     1. We want a prettier default format:
-            do: level: ...
+            mk: level: ...
        Spacing. Lower case. Skip " level:" if INFO-level. 
 
-    2. We want the task name in there if this a "do.task.foo" logger:
+    2. We want the task name in there if this a "mk.task.foo" logger:
             mk: [foo] level: ...
     """
     hdlr = logging.StreamHandler(stream)
@@ -211,6 +211,7 @@ def mk(argv=sys.argv, doc=None):
     parser.add_option("-d", "--debug", dest="log_level",
         action="store_const", const=logging.DEBUG,
         help="verbose debugging output")
+
     parser.add_option("--start", action="store_true",
         help="create a new starter 'Makefile.py' in the current directory")
 
