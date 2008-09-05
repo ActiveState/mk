@@ -113,8 +113,16 @@ class Configuration(object):
             # gets imported instead, causing problems.
             os.remove(conf_pyc)
         try:
-            file, path, desc = imp.find_module(name, [dirname(self._path)])
-            self._mod = imp.load_module(name, file, path, desc)
+            cfg_dir = dirname(self._path)
+            file, path, desc = imp.find_module(name, [cfg_dir])
+            curr_dir = os.getcwd()
+            if curr_dir != cfg_dir:
+                os.chdir(cfg_dir)
+            try:
+                self._mod = imp.load_module(name, file, path, desc)
+            finally:
+                if curr_dir != cfg_dir:
+                    os.chdir(curr_dir)
         except ImportError, ex:
             if not exists(self._path):
                 details = "`%s' does not exist" % self._path

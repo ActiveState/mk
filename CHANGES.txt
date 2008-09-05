@@ -1,5 +1,10 @@
 # mk Changelog
 
+## mk vNEXT
+
+- Always load a Configuration module with cwd switched to the dir of the
+  config file.
+
 ## mk v0.7
 
 - Add support for a 'dir' attribute on a Configuration instance:
