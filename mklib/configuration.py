@@ -5,7 +5,7 @@
 import sys
 import os
 from os.path import isfile, basename, splitext, join, dirname, normpath, \
-                    exists
+                    exists, abspath
 from pprint import pprint
 import imp
 import types
@@ -113,7 +113,7 @@ class Configuration(object):
             # gets imported instead, causing problems.
             os.remove(conf_pyc)
         try:
-            cfg_dir = dirname(self._path)
+            cfg_dir = dirname(abspath(self._path))
             file, path, desc = imp.find_module(name, [cfg_dir])
             curr_dir = os.getcwd()
             if curr_dir != cfg_dir:
