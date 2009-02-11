@@ -93,6 +93,7 @@ class Makefile(object):
         if not sys.platform == "win32" and isabs(a):
             home = os.environ["HOME"]
             if a.startswith(home):
+                #XXX:TODO: bug here for, e.g., "/home/jan" vs "/home/jane"
                 a = "~" + a[len(home):]
         if len(r) < len(a):
             return r
