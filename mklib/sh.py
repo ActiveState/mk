@@ -14,7 +14,7 @@ from os.path import normcase, normpath, isabs, abspath, isfile, \
 import logging
 import stat
 
-from mklib.common import *
+log = logging.getLogger("sh")
 
 
 
