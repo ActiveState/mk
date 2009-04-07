@@ -22,14 +22,14 @@ class foo(Task):
     def make(self):
         dst = self.results[0].relpath
         sh.mkdir(dirname(dst), log=self.log)
-        sh.cp(self.deps[0].relpath, dst, self.log)
+        sh.cp(self.deps[0].relpath, dst, log=self.log.info)
 class bar(Task):
     deps = ["src/bar.txt"]
     results = ["build/bar.txt"]
     def make(self):
         dst = self.results[0].relpath
         sh.mkdir(dirname(dst), log=self.log)
-        sh.cp(self.deps[0].relpath, dst, self.log)
+        sh.cp(self.deps[0].relpath, dst, log=self.log.info)
 
 class sources(Alias):
     deps = ["foo", "bar"]

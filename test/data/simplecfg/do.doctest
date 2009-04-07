@@ -1,4 +1,6 @@
->>> import os, sys
+#TODO: this test fails when run as part of the full suite. I don't know why.
+
+>>> import os, sys, time
 >>> from configurelib import runner
 >>> runner.setup_logging(sys.stdout)    # doctest doesn't watch stderr
 >>> sys.path.insert(0, '.')             # to get configure.py on path

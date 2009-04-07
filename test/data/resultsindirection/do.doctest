@@ -11,14 +11,21 @@
 ...     runner.setup_logging(path_normalizer())
 ... else:
 ...     runner.setup_logging(sys.stdout)
+>>> def pause():
+...     import time
+...     time.sleep(0.5)
+>>> def tweak(path):
+...     f = open(path, 'a')
+...     f.write('booga')
+...     f.close()
 
 
 # A clean run should do all the build steps.
 >>> runner.mk(['', 'clean'])
 >>> runner.mk(['', 'finishup'])
 mk: [foo] mkdir `build'
-mk: [foo] cp `src/foo.txt' `build/foo.txt'
-mk: [bar] cp `src/bar.txt' `build/bar.txt'
+mk: [foo] cp src/foo.txt build/foo.txt
+mk: [bar] cp src/bar.txt build/bar.txt
 mk: [finishup] touch `build/done.txt'
 
 
@@ -26,9 +33,9 @@ mk: [finishup] touch `build/done.txt'
 # now only rebuild when dependencies are actually out-of-date.
 >>> runner.mk(['', 'finishup'])
 mk: Task `finishup' is up to date.
->>> sh.touch("src/foo.txt")
+>>> pause(); tweak("src/foo.txt")  # Pause to avoid spurious time resolution error.
 >>> runner.mk(['', 'finishup'])
-mk: [foo] cp `src/foo.txt' `build/foo.txt'
+mk: [foo] cp src/foo.txt build/foo.txt
 mk: [finishup] touch `build/done.txt'
 >>> runner.mk(['', 'finishup'])
 mk: Task `finishup' is up to date.
