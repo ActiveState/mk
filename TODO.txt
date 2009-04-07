@@ -1,3 +1,6 @@
+- [major bug] Add mk/bin to PATH on Windows (i.e. using 'mk.exe') causes
+  Python path issues that breaks, e.g. "mk quicksetup" on TaraG's box
+  in "code.as.com" project.
 - svn prop issues causing test failures. Get all props from old repo.
 - failure to have a config.py should be lazy. Only try to load it, and
   error out, when first access to self.cfg\.  This allows tasks that
@@ -66,6 +69,7 @@
     - should File move to file.py or something? Move to makefile.py for starters
 - rationalize 'log' args to mklib.sh.* functions
 - see "TODO: mk" in kodoc/Makefile.py
+- look at "DoIt":https://launchpad.net/doit 
 - Rules. An idea:
     class doc_file(Rule):
         """A doc file under $lang/... is built to $build_dir/$lang/...
@@ -119,6 +123,18 @@
   tasks
 - play with a nice way to easily get C/C++ header deps
 - give example of specializing a Configuration class
+- error/warning highlighting in bash:
+    c.f. http://shawnwilsher.com/archives/184
+    make()
+    {
+      pathpat="(/[^/]*)+:[0-9]+”
+      ccred=$(echo -e “\033[0;31m")
+      ccyellow=$(echo -e "\033[0;33m")
+      ccend=$(echo -e "\033[0m")
+      /usr/bin/make "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g"
+      return ${PIPESTATUS[0]}
+    }
+
 
 
 
