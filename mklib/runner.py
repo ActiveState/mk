@@ -183,9 +183,6 @@ def _optparse_zero_or_one_arg(option, opt_str, value, parser):
 class _CleanHelpOptionParser(optparse.OptionParser):
     """Just get the OptionParser to not screw up the description when
     printing -h|--help output.
-    
-    TODO: Actually subclass optparse.IndentedHelpFormatter and pass that
-    in instead.
     """
     def format_description(self, formatter):
         return self.get_description()
@@ -197,6 +194,7 @@ def mk(argv=sys.argv, doc=None):
     doc = doc or __doc__
     if not doc.endswith("\n"):
         doc += "\n"
+    # TODO: Switch to _NoReflowFormatter (see svn_add_ignore.py)
     parser = _CleanHelpOptionParser(prog="mk", usage=usage,
                                     version=version,
                                     description=doc or __doc__)
