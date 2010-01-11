@@ -7,7 +7,7 @@ although this was a personal project before I'd heard of rake.
 """
 
 __author__ = "Trent Mick"
-__version_info__ = (0, 7, 1)
+__version_info__ = (0, 7, 2)
 __version__ = '.'.join(map(str, __version_info__))
 
 from mklib.makefile import include
