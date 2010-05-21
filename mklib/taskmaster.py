@@ -19,6 +19,16 @@ from mklib.tasks import Task, File, Alias
 from mklib.configuration import ConfigurationType
 
 
+
+def mk(*task_names):
+    """Allows tasks to make other tasks."""
+    # Makefile loading places some state on the module at '_mk_*_'
+    # attributes.
+    f = sys._getframe(1)
+    makefile = f.f_globals["_mk_makefile_"]
+    return makefile.master.make(*task_names)
+
+
 class TaskMaster(object):
     def __init__(self, options, makefile_path,
                  config_file_path_override=None, force=False):

@@ -11,5 +11,6 @@ __version_info__ = (0, 7, 2)
 __version__ = '.'.join(map(str, __version_info__))
 
 from mklib.makefile import include
+from mklib.taskmaster import mk
 from mklib.tasks import Task, File, TaskGroup, Alias
 from mklib.configuration import Configuration
