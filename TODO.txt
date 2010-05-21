@@ -1,6 +1,8 @@
 - [major bug] Add mk/bin to PATH on Windows (i.e. using 'mk.exe') causes
   Python path issues that breaks, e.g. "mk quicksetup" on TaraG's box
   in "code.as.com" project.
+- mk: look at "import_module" (backported part of importlib for Python 2.x)
+  instead of loading in mklib/makefile.py#_load
 - svn prop issues causing test failures. Get all props from old repo.
 - failure to have a config.py should be lazy. Only try to load it, and
   error out, when first access to self.cfg\.  This allows tasks that
