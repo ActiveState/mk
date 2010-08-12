@@ -7,8 +7,8 @@ include("subdir/Makefile.py")
 class clean(Task):
     "clean up for test"
     def make(self):
-        to_del = ["answer.txt",
-                  join("subdir", "answer.txt")]
+        to_del = ["answer.tmp",
+                  join("subdir", "answer.tmp")]
         for path in to_del:
             if exists(path):
                 os.remove(path)

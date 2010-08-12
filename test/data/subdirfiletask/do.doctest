@@ -13,19 +13,19 @@
 
 >>> runner.mk(['', 'clean'])
 >>> runner.mk(['', 'answer'])
->>> assert exists(join('subdir', 'answer.txt'))
+>>> assert exists(join('subdir', 'answer.tmp'))
 >>> runner.mk(['', 'answer'])
 mk: Task `answer' is up to date.
 
 >>> runner.mk(['', 'clean'])
->>> runner.mk(['', 'answer.txt'])
+>>> runner.mk(['', 'answer.tmp'])
 Traceback (most recent call last):
   ...
-MkError: no task to make file `answer.txt'
+MkError: no task to make file `answer.tmp'
 
->>> runner.mk(['', 'subdir/answer.txt'])
->>> runner.mk(['', 'subdir/answer.txt'])
-mk: File `subdir/answer.txt' is up to date.
+>>> runner.mk(['', 'subdir/answer.tmp'])
+>>> runner.mk(['', 'subdir/answer.tmp'])
+mk: File `subdir/answer.tmp' is up to date.
 
 
 # If class File didn't use absolute paths, then the explicit
@@ -34,8 +34,8 @@ mk: File `subdir/answer.txt' is up to date.
 # assumption that 'answer' is up-to-date in the following case.
 >>> from mklib.sh import touch
 >>> runner.mk(['', 'clean'])
->>> touch('subdir/question.txt')
->>> touch('answer.txt')
+>>> touch('subdir/question.tmp')
+>>> touch('answer.tmp')
 >>> runner.mk(['', 'answer'])
 
 
