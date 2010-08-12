@@ -1,4 +1,13 @@
-- docs are waaaay out of date: back when I called this thing "do".
+
+- setup.py and release 0.7.2
+- docs are waaaay out of date: back when I called this thing "do". Quickest
+  update possible
+- clean up below
+
+
+# older
+
+
 - [major bug] Add mk/bin to PATH on Windows (i.e. using 'mk.exe') causes
   Python path issues that breaks, e.g. "mk quicksetup" on TaraG's box
   in "code.as.com" project.
