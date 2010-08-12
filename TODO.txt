@@ -1,3 +1,4 @@
+- docs are waaaay out of date: back when I called this thing "do".
 - [major bug] Add mk/bin to PATH on Windows (i.e. using 'mk.exe') causes
   Python path issues that breaks, e.g. "mk quicksetup" on TaraG's box
   in "code.as.com" project.
@@ -137,19 +138,4 @@
       return ${PIPESTATUS[0]}
     }
 
-
-
-
-Design notes
-============
-
-- tasks should be collected by TaskMaster (because there can be
-  multiple Doitfile's)
-- each task given a link back to its Doitfile
-
-
-Side thoughts
-=============
-
-- use FSEvents on Leopard to speed up determination of what's changed
 
