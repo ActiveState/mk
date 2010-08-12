@@ -15,8 +15,16 @@
 ...     import time
 ...     time.sleep(0.5)
 >>> def tweak(path):
+...     f = open(path)
+...     orig = f.read()
+...     f.close()
 ...     f = open(path, 'a')
 ...     f.write('booga')
+...     f.close()
+...     return orig
+>>> def write_path(path, content):
+...     f = open(path, 'w')
+...     f.write(content)
 ...     f.close()
 
 
@@ -33,9 +41,10 @@ mk: [finishup] touch `build/done.txt'
 # now only rebuild when dependencies are actually out-of-date.
 >>> runner.mk(['', 'finishup'])
 mk: Task `finishup' is up to date.
->>> pause(); tweak("src/foo.txt")  # Pause to avoid spurious time resolution error.
+>>> pause(); orig = tweak("src/foo.txt")  # Pause to avoid spurious time resolution error.
 >>> runner.mk(['', 'finishup'])
 mk: [foo] cp src/foo.txt build/foo.txt
 mk: [finishup] touch `build/done.txt'
 >>> runner.mk(['', 'finishup'])
 mk: Task `finishup' is up to date.
+>>> write_path("src/foo.txt", orig) # Clean up
