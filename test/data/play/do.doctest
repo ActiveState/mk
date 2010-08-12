@@ -1,5 +1,5 @@
 # Setup the test.
->>> import sys
+>>> import sys, os
 >>> from mklib import runner
 >>> runner.setup_logging(sys.stdout)
 >>> runner.mk(['', 'testclean'])
@@ -41,3 +41,5 @@ touch bar
 touch foo
 touch bar
 
+# Clean up.
+>>> os.remove('blah')
