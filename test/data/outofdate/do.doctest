@@ -37,3 +37,5 @@ mk: [foo] cp bar.txt foo.txt
 >>> runner.mk([''])
 mk: Task `foo' is up to date.
 
+# Clean up
+>>> runner.mk(['', 'clean'])
