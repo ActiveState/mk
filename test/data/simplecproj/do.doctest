@@ -33,3 +33,7 @@ True
 
 >>> runner.mk(['', 'prog'])
 mk: Task `prog' is up to date.
+
+
+# Clean up.
+>>> runner.mk(['', 'distclean'])
