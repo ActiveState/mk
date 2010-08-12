@@ -10,14 +10,3 @@ GNU `make TASK`.
 TODO: fill out this readme, obviously a lot more needs to be documented
 
 
-versions, branches, releases
-----------------------------
-
-This is the mk 0.x (the trunk).  See CHANGES.txt for details on recent
-changes. This is currently the only active branch.
-
-Releases are tagged in
-<http://svn.openkomodo.com/repos/mk/tags/$version>.
-The latest current releases are: 0.7.1.
-
-
