@@ -20,3 +20,6 @@ True
 #    >>> retval = os.system('python config.py foo')
 #    foo = 'bar'
 
+# Clean up
+>>> os.remove('config.py')
+
