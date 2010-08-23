@@ -1,8 +1,7 @@
 
 """Hello, World for 'do'."""
 
-from doitlib.task import Task
-
+from mklib import Task
 
 class default(Task):
     default = True
@@ -10,10 +9,10 @@ class default(Task):
 
 class hello(Task):
     "say hi"
-    def doit(self):
+    def make(self):
         print "Hello, World!"
 
 class bye(Task):
     "say bye"
-    def doit(self):
+    def make(self):
         print "Bye bye."
