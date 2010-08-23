@@ -1,6 +1,6 @@
-from doitlib.task import Task
+from mklib import Task
 class answer(Task):
     default = True
     deps = ["answer.txt"]
-    def doit(self):
+    def make(self):
         print "do answer"
