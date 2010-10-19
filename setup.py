@@ -16,7 +16,7 @@ setup(name='mklib',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: MIT License',
       ],
-      keywords='',
+      keywords='make mk',
       author='Trent Mick',
       author_email='trentm@gmail.com',
       maintainer='Sridhar Ratnakumar',
@@ -26,6 +26,7 @@ setup(name='mklib',
       packages=find_packages(exclude=[
           'examples', 'test']),
       include_package_data=True,
+      zip_safe=False,
       entry_points={
         'console_scripts': [
             'mk=mklib.runner:main'
