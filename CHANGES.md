@@ -1,6 +1,6 @@
 # mk change log
 
-## mk 0.7.2 (not yet released)
+## mk 0.7.2
 
 - Add `mklib.mk` function that allows a task body to call another task with
   `mk(*task_names)`.
