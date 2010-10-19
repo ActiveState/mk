@@ -3,3 +3,4 @@ include CHANGES.md
 include LICENSE.txt
 recursive-include mklib *.py
 recursive-include configurelib *.py
+recursive-include test/data *

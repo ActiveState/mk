@@ -2,7 +2,8 @@
 
 ## mk 0.7.3 (not yet released)
 
-(nothing yet)
+- Include "test/data/..." in the sdist package.
+
 
 ## mk 0.7.2
 
