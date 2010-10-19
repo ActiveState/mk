@@ -9,7 +9,7 @@ import mklib
 
 
 setup(
-    name='mklib',
+    name='mk',
     version=mklib.__version__,
     description="a Makefile/make replacement written in Python (used at ActiveState)",
     classifiers=[
