@@ -1,0 +1,34 @@
+from setuptools import setup, find_packages
+import sys, os
+from os import path
+
+
+# make sure that we import mklib/ (and not the system-wide one)
+sys.path.insert(0, path.abspath(path.dirname(__file__)))
+import mklib
+
+
+setup(name='mklib',
+      version=mklib.__version__,
+      description="a Makefile/make replacement written in Python (used at ActiveState)",
+      classifiers=[
+          'Development Status :: 5 - Production/Stable',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: MIT License',
+      ],
+      keywords='',
+      author='Trent Mick',
+      author_email='tremtm@gmail.com',
+      maintainer='Sridhar Ratnakumar',
+      maintainer_email='sridharr@activestate.com',
+      url='http://github.com/ActiveState/applib',
+      license='MIT',
+      packages=find_packages(exclude=[
+          'examples', 'test']),
+      include_package_data=True,
+      entry_points={
+        'console_scripts': [
+            'mk=mklib.runner:main'
+        ]
+      },
+)
