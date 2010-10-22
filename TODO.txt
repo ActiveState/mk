@@ -8,6 +8,8 @@
 # older
 
 
+- [minor bug] lazy config.py/Configuration doesn't work. See
+  "test/data/lazycfg/README.md".
 - [major bug] Add mk/bin to PATH on Windows (i.e. using 'mk.exe') causes
   Python path issues that breaks, e.g. "mk quicksetup" on TaraG's box
   in "code.as.com" project.

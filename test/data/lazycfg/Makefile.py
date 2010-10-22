@@ -1,4 +1,7 @@
-from mklib import Task
+from mklib import Task, Configuration
+
+class cfg(Configuration):
+    pass
 
 class usescfg(Task):
     def make(self):

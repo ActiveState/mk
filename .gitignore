@@ -4,3 +4,4 @@
 tmp/
 build/
 dist/
+test/data/simplecfg/config.py
